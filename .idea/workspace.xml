@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="dc1d9dd8-e943-4cf3-9c93-4a02348ae744" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/coffee-shop-php.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.osp/project.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Userpage.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/about.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/contact-requests.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/create-admin.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/index.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/login.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/logout.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/manage-admins.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/order-emails.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/orders.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/products.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/block/footer.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/block/header.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/checkout.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/coffee-shop.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/contact.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/profile.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/image/691b3ddc62818_1763392988.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/image/avatar.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/image/brazil-santos.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/image/coffee-candy.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/image/coffee-cup.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/image/colombia-excelso.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/image/costa-rica-tarrazu.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/image/daily-arabica.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/image/espresso-nutty.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/image/ethiopia-yirgacheffe.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/image/guatemala-antigua.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/image/kenya-aa.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/image/sumatra-mandheling.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/script.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/add-to-cart.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/auth.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/db.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/join-bonus-program.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/logout.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/payment-processor.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/process-order.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/reg.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/remove-from-cart.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/send-order-email.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/update-cart.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/update-profile.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-details.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-emails.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-history.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-success.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment-success.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/product.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reagpage.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/update-old-emails.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/view-order-email.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webhook-payment.php" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+    <execution>
+      <executable path="composer" />
+    </execution>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "schoky"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/schoky/coffee-shop-php.git",
+    "accountId": "2ff706dd-cee4-4450-99af-19001bfea7f3"
+  }
+}]]></component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP" />
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 5
+}]]></component>
+  <component name="ProjectId" id="36TdCoGA8pGVWm8m3eIHxm19kD0" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "settings.editor.selected.configurable": "reference.webide.settings.project.settings.php",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-a71380e98a7c-JavaScript-PS-252.28238.9" />
+        <option value="bundled-php-predefined-a98d8de5180a-58f58c5035b3-com.jetbrains.php.sharedIndexes-PS-252.28238.9" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="dc1d9dd8-e943-4cf3-9c93-4a02348ae744" name="Changes" comment="" />
+      <created>1765034370180</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1765034370180</updated>
+      <workItem from="1765034371875" duration="138000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
