@@ -223,10 +223,10 @@ if (isset($_COOKIE['name'])) {
 
                 <div class="burger-divider"></div>
 
-                <a href="admin/login.php" class="burger-link admin-link">
-                    <span class="burger-link-icon">⚙️</span>
-                    <span class="burger-link-text">Админка</span>
-                </a>
+<!--                <a href="admin/login.php" class="burger-link admin-link">-->
+<!--                    <span class="burger-link-icon">⚙️</span>-->
+<!--                    <span class="burger-link-text">Админка</span>-->
+<!--                </a>-->
             <?php endif; ?>
         </div>
     </div>
