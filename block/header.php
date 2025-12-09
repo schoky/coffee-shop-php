@@ -90,17 +90,17 @@ if (isset($_COOKIE['name'])) {
                     </a>
 
                     <!-- Ссылка на админ-панель для ПК -->
-                    <?php if (isset($_SESSION['admin'])): ?>
-                        <a href="admin/index.php" class="admin-btn">
-                            <span class="admin-icon">⚙️</span>
-                            <span class="admin-text">Админка</span>
-                        </a>
-                    <?php else: ?>
-                        <a href="admin/login.php" class="admin-btn">
-                            <span class="admin-icon">⚙️</span>
-                            <span class="admin-text">Админка</span>
-                        </a>
-                    <?php endif; ?>
+<!--                    --><?php //if (isset($_SESSION['admin'])): ?>
+<!--                        <a href="admin/index.php" class="admin-btn">-->
+<!--                            <span class="admin-icon">⚙️</span>-->
+<!--                            <span class="admin-text">Админка</span>-->
+<!--                        </a>-->
+<!--                    --><?php //else: ?>
+<!--                        <a href="admin/login.php" class="admin-btn">-->
+<!--                            <span class="admin-icon">⚙️</span>-->
+<!--                            <span class="admin-text">Админка</span>-->
+<!--                        </a>-->
+<!--                    --><?php //endif; ?>
 
                     <a href="lib/logout.php" class="logout-btn">
                         <span class="logout-icon">🚪</span>

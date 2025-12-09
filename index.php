@@ -5,6 +5,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Реалист — Главная</title>
+    <meta name="description" content="Кофейня Реалист — лучший кофе, свежая выпечка и уютная атмосфера. Натуральное зерно без ароматизаторов. Доставка по всей России. Гарантия качества от обжарщика.">
+    <meta name="keywords" content="кофейня Реалист, свежий кофе, выпечка, завтраки, уютное кафе, кофе с собой, десерты, натуральный кофе, зерновой кофе, арабика, робуста, доставка кофе, кофейня в России">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
