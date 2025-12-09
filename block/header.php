@@ -192,17 +192,17 @@ if (isset($_COOKIE['name'])) {
                 <div class="burger-divider"></div>
 
                 <!-- Ссылка на админ-панель в бургер-меню -->
-                <?php if (isset($_SESSION['admin'])): ?>
-                    <a href="admin/index.php" class="burger-link admin-link">
-                        <span class="burger-link-icon">⚙️</span>
-                        <span class="burger-link-text">Админ-панель</span>
-                    </a>
-                <?php else: ?>
-                    <a href="admin/login.php" class="burger-link admin-link">
-                        <span class="burger-link-icon">⚙️</span>
-                        <span class="burger-link-text">Админка</span>
-                    </a>
-                <?php endif; ?>
+<!--                --><?php //if (isset($_SESSION['admin'])): ?>
+<!--                    <a href="admin/index.php" class="burger-link admin-link">-->
+<!--                        <span class="burger-link-icon">⚙️</span>-->
+<!--                        <span class="burger-link-text">Админ-панель</span>-->
+<!--                    </a>-->
+<!--                --><?php //else: ?>
+<!--                    <a href="admin/login.php" class="burger-link admin-link">-->
+<!--                        <span class="burger-link-icon">⚙️</span>-->
+<!--                        <span class="burger-link-text">Админка</span>-->
+<!--                    </a>-->
+<!--                --><?php //endif; ?>
 
                 <a href="lib/logout.php" class="burger-link logout-link">
                     <span class="burger-link-icon">🚪</span>
