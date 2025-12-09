@@ -1,0 +1,107 @@
+# Robots.txt для кофейни "Реалист"
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /lib/
+Disallow: /includes/
+Disallow: /config/
+Disallow: /css/
+Disallow: /js/
+Disallow: /vendor/
+Disallow: /node_modules/
+Disallow: /uploads/temp/
+Disallow: /test/
+Disallow: /debug/
+Disallow: /backup/
+Disallow: /old/
+Disallow: /tmp/
+Disallow: /cgi-bin/
+Disallow: /logs/
+Disallow: /?*order=
+Disallow: /?*search=
+Disallow: /?*filter=
+Disallow: /?*sort=
+Disallow: /?*page=
+Disallow: /?*ajax=
+Disallow: /?*action=
+Disallow: /cart.php
+Disallow: /checkout.php
+Disallow: /order-confirm.php
+Disallow: /login.php
+Disallow: /register.php
+Disallow: /profile.php
+Disallow: /password-reset.php
+Disallow: /privacy-policy.php
+Disallow: /terms-of-service.php
+
+# Разрешаем индексацию важных страниц
+Allow: /about.php
+Allow: /menu.php
+Allow: /products.php
+Allow: /contact.php
+Allow: /locations.php
+Allow: /events.php
+Allow: /promotions.php
+
+# Специальные правила для поисковых систем
+User-agent: Googlebot
+Allow: /
+Disallow: /admin/
+Disallow: /lib/
+Disallow: /tmp/
+Crawl-delay: 1
+
+User-agent: YandexBot
+Allow: /
+Disallow: /admin/
+Disallow: /lib/
+Disallow: /tmp/
+Crawl-delay: 2
+
+User-agent: Bingbot
+Allow: /
+Disallow: /admin/
+Disallow: /lib/
+Disallow: /tmp/
+Crawl-delay: 1
+
+User-agent: Baiduspider
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: MegaIndex.ru
+Disallow: /
+
+# Sitemap
+Sitemap: https://your-domain.com/sitemap.xml
+Sitemap: https://your-domain.com/sitemap-products.xml
+Sitemap: https://your-domain.com/sitemap-pages.xml
+
+# Параметры
+Clean-param: ref /products.php
+Clean-param: sessionid /products.php
+Clean-param: sid /products.php
+Clean-param: utm_source /
+Clean-param: utm_medium /
+Clean-param: utm_campaign /
+Clean-param: utm_content /
+Clean-param: utm_term /
+Clean-param: fbclid /
+Clean-param: gclid /
+Clean-param: yclid /
+Clean-param: _ga /
+
+# Кэширование
+Cache: 6 hours
+Cache-priority: normal
