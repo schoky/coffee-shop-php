@@ -72,16 +72,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (!empty($errors)) {
             $_SESSION['checkout_errors'] = $errors;
             $_SESSION['checkout_form_data'] = [
-                'full_name' => $full_name,
-                'phone' => $phone,
-                'email' => $email,
-                'address' => $address,
-                'city' => $city,
-                'postal_code' => $postal_code,
-                'delivery_method' => $delivery_method,
-                'payment_method' => $payment_method,
-                'comments' => $comments,
-                'use_bonus' => $use_bonus
+                    'full_name' => $full_name,
+                    'phone' => $phone,
+                    'email' => $email,
+                    'address' => $address,
+                    'city' => $city,
+                    'postal_code' => $postal_code,
+                    'delivery_method' => $delivery_method,
+                    'payment_method' => $payment_method,
+                    'comments' => $comments,
+                    'use_bonus' => $use_bonus
             ];
             header('Location: ../checkout.php?error=validation');
             exit;
@@ -163,8 +163,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, "pending")';
         $query = $pdo->prepare($sql);
         $query->execute([
-            $user->id, $full_name, $phone, $email, $address, $city,
-            $postal_code, $delivery_method, $payment_method, $comments, $total_amount, $used_bonus, $accrued_bonus
+                $user->id, $full_name, $phone, $email, $address, $city,
+                $postal_code, $delivery_method, $payment_method, $comments, $total_amount, $used_bonus, $accrued_bonus
         ]);
 
         $order_id = $pdo->lastInsertId();
@@ -175,11 +175,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     VALUES (?, ?, ?, ?, ?)';
             $query = $pdo->prepare($sql);
             $query->execute([
-                $order_id,
-                $item->product_id,
-                $item->text,
-                $item->quantity,
-                $item->price
+                    $order_id,
+                    $item->product_id,
+                    $item->text,
+                    $item->quantity,
+                    $item->price
             ]);
         }
 
@@ -209,10 +209,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $description = "Оплата заказа #{$order_id} в кофейне Реалист";
 
             $payment_result = $payment_processor->createPayment(
-                $order_id,
-                $total_amount,
-                $description,
-                $return_url
+                    $order_id,
+                    $total_amount,
+                    $description,
+                    $return_url
             );
 
             if ($payment_result['success']) {
@@ -232,16 +232,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 $_SESSION['checkout_errors'] = ['Ошибка при создании платежа. Пожалуйста, попробуйте еще раз или выберите другой способ оплаты.'];
                 $_SESSION['checkout_form_data'] = [
-                    'full_name' => $full_name,
-                    'phone' => $phone,
-                    'email' => $email,
-                    'address' => $address,
-                    'city' => $city,
-                    'postal_code' => $postal_code,
-                    'delivery_method' => $delivery_method,
-                    'payment_method' => $payment_method,
-                    'comments' => $comments,
-                    'use_bonus' => $use_bonus
+                        'full_name' => $full_name,
+                        'phone' => $phone,
+                        'email' => $email,
+                        'address' => $address,
+                        'city' => $city,
+                        'postal_code' => $postal_code,
+                        'delivery_method' => $delivery_method,
+                        'payment_method' => $payment_method,
+                        'comments' => $comments,
+                        'use_bonus' => $use_bonus
                 ];
                 header('Location: ../checkout.php?error=payment_error');
                 exit;
@@ -304,6 +304,13 @@ function generateOrderEmailContent($order_id, $pdo) {
     $query->execute([$order_id]);
     $order_items = $query->fetchAll(PDO::FETCH_OBJ);
 
+    // Читаем CSS из файла
+    $css_content = '';
+    $css_file = __DIR__ . '/order-email-style.css';
+    if (file_exists($css_file)) {
+        $css_content = file_get_contents($css_file);
+    }
+
     ob_start();
     ?>
     <!DOCTYPE html>
@@ -313,103 +320,7 @@ function generateOrderEmailContent($order_id, $pdo) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Подтверждение заказа</title>
         <style>
-            body {
-                font-family: "Segoe UI", Roboto, Arial, sans-serif;
-                line-height: 1.6;
-                color: #222;
-                background: #f7f5f2;
-                margin: 0;
-                padding: 20px;
-            }
-            .container {
-                max-width: 600px;
-                margin: 0 auto;
-                background: white;
-                border-radius: 12px;
-                overflow: hidden;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            }
-            .header {
-                background: #6b4f2b;
-                color: white;
-                padding: 30px 20px;
-                text-align: center;
-            }
-            .logo {
-                font-size: 28px;
-                font-weight: 700;
-                margin-bottom: 10px;
-            }
-            .content {
-                padding: 30px;
-            }
-            .order-card {
-                background: #f8f9fa;
-                border-radius: 8px;
-                padding: 20px;
-                margin: 20px 0;
-            }
-            .order-items {
-                width: 100%;
-                border-collapse: collapse;
-                margin: 20px 0;
-            }
-            .order-items th, .order-items td {
-                padding: 10px;
-                text-align: left;
-                border-bottom: 1px solid #ddd;
-            }
-            .order-items th {
-                background: #e9ecef;
-                font-weight: 600;
-                color: #6b4f2b;
-            }
-            .total {
-                font-size: 18px;
-                font-weight: bold;
-                text-align: right;
-                color: #6b4f2b;
-                margin-top: 15px;
-                padding-top: 15px;
-                border-top: 2px solid #6b4f2b;
-            }
-            .button {
-                display: inline-block;
-                padding: 12px 25px;
-                background: #6b4f2b;
-                color: white;
-                text-decoration: none;
-                border-radius: 8px;
-                font-weight: 600;
-                margin: 15px 0;
-            }
-            .info-grid {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 15px;
-                margin: 15px 0;
-            }
-            .bonus-positive {
-                color: #28a745;
-                font-weight: 600;
-            }
-            .bonus-negative {
-                color: #dc3545;
-                font-weight: 600;
-            }
-            .footer {
-                text-align: center;
-                margin-top: 30px;
-                padding: 20px;
-                background: #f8f9fa;
-                color: #6c757d;
-                border-top: 1px solid #dee2e6;
-            }
-            @media (max-width: 600px) {
-                .info-grid {
-                    grid-template-columns: 1fr;
-                }
-            }
+            <?php echo $css_content; ?>
         </style>
     </head>
     <body>
@@ -529,17 +440,17 @@ function saveOrderEmailToFile($order_id, $content) {
 // Вспомогательные функции для преобразования способов доставки и оплаты в текст
 function getDeliveryMethodText($method) {
     $methods = [
-        'courier' => 'Курьерская доставка',
-        'pickup' => 'Самовывоз',
-        'post' => 'Почта России'
+            'courier' => 'Курьерская доставка',
+            'pickup' => 'Самовывоз',
+            'post' => 'Почта России'
     ];
     return $methods[$method] ?? $method;
 }
 
 function getPaymentMethodText($method) {
     $methods = [
-        'card' => 'Картой онлайн',
-        'cash' => 'Наличными при получении'
+            'card' => 'Картой онлайн',
+            'cash' => 'Наличными при получении'
     ];
     return $methods[$method] ?? $method;
 }

@@ -7,7 +7,6 @@ if (isset($_SESSION['admin'])) {
 
 $error = '';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Используем username вместо login
     $login = isset($_POST['username']) ? trim($_POST['username']) : '';
     $password = isset($_POST['password']) ? trim($_POST['password']) : '';
 
@@ -46,55 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Реалист — Админ панель</title>
     <link rel="stylesheet" href="../css/style.css">
-    <style>
-        .admin-login {
-            max-width: 400px;
-            margin: 100px auto;
-            padding: 40px;
-            background: var(--white);
-            border-radius: var(--radius);
-            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-        }
-        .admin-login h1 {
-            text-align: center;
-            color: var(--accent);
-            margin-bottom: 30px;
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: var(--muted);
-        }
-        .form-group input {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #e6e6e6;
-            border-radius: 8px;
-            font-size: 16px;
-        }
-        .error-message {
-            background: #f8d7da;
-            color: #721c24;
-            padding: 12px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        .back-to-site {
-            text-align: center;
-            margin-top: 20px;
-        }
-        .login-hint {
-            text-align: center;
-            font-size: 14px;
-            color: var(--muted);
-            margin-top: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/admin.css">
 </head>
 <body>
 <main class="container">
@@ -126,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="back-to-site">
             <a href="../index.php" class="btn ghost" style="margin-top: 15px;">← Вернуться на сайт</a>
         </div>
-        </div>
+    </div>
 </main>
 </body>
 </html>

@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// Заменяем устаревшие FILTER_SANITIZE_STRING
 $name = trim(htmlspecialchars($_POST["name"]));
 $password = trim(htmlspecialchars($_POST["password"]));
 

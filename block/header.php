@@ -7,7 +7,6 @@ $bonus_balance = 0;
 $is_admin = isset($_SESSION['admin']); // Проверяем, авторизован ли администратор
 
 if (isset($_COOKIE['name'])) {
-    // ИСПРАВЛЕНИЕ: используем абсолютный путь
     $db_path = __DIR__ . '/../lib/db.php';
     if (file_exists($db_path)) {
         require_once $db_path;
@@ -28,7 +27,7 @@ if (isset($_COOKIE['name'])) {
     $result = $query->fetch(PDO::FETCH_OBJ);
     $cart_total_items = $result ? (int)$result->total : 0;
 
-    // Количество позиций (для отладки, если нужно)
+    // Количество позиций
     $sql_count = 'SELECT COUNT(*) as count FROM cart WHERE user_id = (SELECT id FROM users WHERE name = ?)';
     $query_count = $pdo->prepare($sql_count);
     $query_count->execute([$_COOKIE['name']]);

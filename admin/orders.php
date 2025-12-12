@@ -47,63 +47,7 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Управление заказами — Реалист</title>
     <link rel="stylesheet" href="../css/style.css">
-    <style>
-        .admin-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        .admin-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 40px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #e6e6e6;
-        }
-        .orders-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        .orders-table th,
-        .orders-table td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        .orders-table th {
-            background-color: #f8f9fa;
-            font-weight: 600;
-        }
-        .status-pending { background-color: #fff3cd; color: #856404; padding: 4px 8px; border-radius: 4px; }
-        .status-processing { background-color: #cce7ff; color: #004085; padding: 4px 8px; border-radius: 4px; }
-        .status-completed { background-color: #d4edda; color: #155724; padding: 4px 8px; border-radius: 4px; }
-        .status-cancelled { background-color: #f8d7da; color: #721c24; padding: 4px 8px; border-radius: 4px; }
-        .payment-pending { background-color: #fff3cd; color: #856404; padding: 4px 8px; border-radius: 4px; }
-        .payment-paid { background-color: #d4edda; color: #155724; padding: 4px 8px; border-radius: 4px; }
-        .payment-failed { background-color: #f8d7da; color: #721c24; padding: 4px 8px; border-radius: 4px; }
-        .action-form {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-        }
-        .action-form select {
-            padding: 6px;
-            border: 1px solid #e6e6e6;
-            border-radius: 4px;
-        }
-        .order-details-btn {
-            padding: 6px 12px;
-            background: #17a2b8;
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            font-size: 14px;
-        }
-        .order-details-btn:hover {
-            background: #138496;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/admin.css">
 </head>
 <body>
 <main class="container admin-container">
@@ -116,13 +60,13 @@ try {
     </div>
 
     <?php if (isset($_GET['success'])): ?>
-        <div class="success-message" style="background: #d4edda; color: #155724; padding: 12px; border-radius: 8px; margin-bottom: 20px;">
+        <div class="success-message">
             ✅ Статус заказа успешно обновлен
         </div>
     <?php endif; ?>
 
     <?php if (isset($_GET['error'])): ?>
-        <div class="error-message" style="background: #f8d7da; color: #721c24; padding: 12px; border-radius: 8px; margin-bottom: 20px;">
+        <div class="error-message">
             ❌ Ошибка при обновлении статуса
         </div>
     <?php endif; ?>
@@ -157,10 +101,10 @@ try {
                                 <span class="status-<?php echo $order->status; ?>">
                                     <?php
                                     $status_names = [
-                                        'pending' => 'Ожидание',
-                                        'processing' => 'В обработке',
-                                        'completed' => 'Завершен',
-                                        'cancelled' => 'Отменен'
+                                            'pending' => 'Ожидание',
+                                            'processing' => 'В обработке',
+                                            'completed' => 'Завершен',
+                                            'cancelled' => 'Отменен'
                                     ];
                                     echo $status_names[$order->status] ?? $order->status;
                                     ?>
@@ -170,10 +114,10 @@ try {
                                 <span class="payment-<?php echo $order->payment_status; ?>">
                                     <?php
                                     $payment_status_names = [
-                                        'pending' => 'Ожидание',
-                                        'pending_cash' => 'Ожидание наличных',
-                                        'paid' => 'Оплачено',
-                                        'failed' => 'Ошибка'
+                                            'pending' => 'Ожидание',
+                                            'pending_cash' => 'Ожидание наличных',
+                                            'paid' => 'Оплачено',
+                                            'failed' => 'Ошибка'
                                     ];
                                     echo $payment_status_names[$order->payment_status] ?? $order->payment_status;
                                     ?>
@@ -182,9 +126,9 @@ try {
                     <td>
                         <?php
                         $delivery_names = [
-                            'courier' => 'Курьер',
-                            'pickup' => 'Самовывоз',
-                            'post' => 'Почта'
+                                'courier' => 'Курьер',
+                                'pickup' => 'Самовывоз',
+                                'post' => 'Почта'
                         ];
                         echo $delivery_names[$order->delivery_method] ?? $order->delivery_method;
                         ?>

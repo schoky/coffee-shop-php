@@ -44,63 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['request_id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Реалист — Заявки с сайта</title>
     <link rel="stylesheet" href="../css/style.css">
-    <style>
-        .admin-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        .admin-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 40px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #e6e6e6;
-        }
-        .requests-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        .requests-table th,
-        .requests-table td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        .requests-table th {
-            background-color: #f8f9fa;
-            font-weight: 600;
-        }
-        .status-new { background-color: #fff3cd; color: #856404; padding: 4px 8px; border-radius: 4px; }
-        .status-processed { background-color: #d1ecf1; color: #0c5460; padding: 4px 8px; border-radius: 4px; }
-        .status-completed { background-color: #d4edda; color: #155724; padding: 4px 8px; border-radius: 4px; }
-        .message-preview {
-            max-width: 300px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-        .action-form {
-            display: inline;
-        }
-        .success-message {
-            background: #d4edda;
-            color: #155724;
-            padding: 12px 16px;
-            border-radius: var(--radius);
-            margin-bottom: 20px;
-            border: 1px solid #c3e6cb;
-        }
-        .error-message {
-            background: #f8d7da;
-            color: #721c24;
-            padding: 12px 16px;
-            border-radius: var(--radius);
-            margin-bottom: 20px;
-            border: 1px solid #f5c6cb;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/admin.css">
 </head>
 <body>
 <main class="container admin-container">

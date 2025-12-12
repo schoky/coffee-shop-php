@@ -147,123 +147,7 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Управление товарами — Реалист</title>
     <link rel="stylesheet" href="../css/style.css">
-    <style>
-        .admin-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .admin-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 40px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #e6e6e6;
-        }
-        .form-section, .list-section {
-            background: var(--white);
-            padding: 32px;
-            border-radius: var(--radius);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-            margin-bottom: 32px;
-        }
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 24px;
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: var(--muted);
-        }
-        .form-group input, .form-group textarea, .form-group select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #e6e6e6;
-            border-radius: 8px;
-            font-size: 16px;
-        }
-        .form-group textarea {
-            height: 120px;
-            resize: vertical;
-        }
-        .form-actions {
-            display: flex;
-            gap: 12px;
-            margin-top: 24px;
-        }
-        .products-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        .products-table th,
-        .products-table td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        .products-table th {
-            background-color: #f8f9fa;
-            font-weight: 600;
-        }
-        .product-image {
-            width: 60px;
-            height: 60px;
-            object-fit: cover;
-            border-radius: 8px;
-        }
-        .status-active { color: #28a745; font-weight: 600; }
-        .status-inactive { color: #dc3545; font-weight: 600; }
-        .action-buttons {
-            display: flex;
-            gap: 8px;
-        }
-        .btn-small {
-            padding: 6px 12px;
-            font-size: 14px;
-        }
-        .success-message {
-            background: #d4edda;
-            color: #155724;
-            padding: 12px 16px;
-            border-radius: var(--radius);
-            margin-bottom: 20px;
-            border: 1px solid #c3e6cb;
-        }
-        .error-message {
-            background: #f8d7da;
-            color: #721c24;
-            padding: 12px 16px;
-            border-radius: var(--radius);
-            margin-bottom: 20px;
-            border: 1px solid #f5c6cb;
-        }
-        .image-preview {
-            margin-top: 10px;
-            max-width: 200px;
-        }
-        .image-preview img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            border: 1px solid #e6e6e6;
-        }
-        .current-image {
-            margin-top: 10px;
-        }
-        .current-image img {
-            max-width: 200px;
-            height: auto;
-            border-radius: 8px;
-            border: 1px solid #e6e6e6;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/admin.css">
 </head>
 <body>
 <main class="container admin-container">
@@ -327,21 +211,23 @@ try {
                 </div>
             </div>
 
-            <div class="form-group">
-                <label style="display: flex; align-items: center; gap: 8px;">
-                    <input type="checkbox" name="is_active" value="1"
-                            <?php echo ($edit_product && $edit_product->is_active) || !$edit_product ? 'checked' : ''; ?>>
-                    <span>Товар активен (отображается в каталоге)</span>
-                </label>
-            </div>
-
             <div class="form-actions">
-                <button type="submit" class="btn">
-                    <?php echo $edit_product ? 'Обновить товар' : 'Добавить товар'; ?>
-                </button>
-                <?php if ($edit_product): ?>
-                    <a href="products.php" class="btn ghost">Отмена</a>
-                <?php endif; ?>
+                <div class="active-checkbox">
+                    <label style="display: flex; align-items: center; gap: 8px;">
+                        <input type="checkbox" name="is_active" value="1"
+                                <?php echo ($edit_product && $edit_product->is_active) || !$edit_product ? 'checked' : ''; ?>>
+                        <span>Товар активен (отображается в каталоге)</span>
+                    </label>
+                </div>
+
+                <div class="form-buttons">
+                    <button type="submit" class="btn">
+                        <?php echo $edit_product ? 'Обновить товар' : 'Добавить товар'; ?>
+                    </button>
+                    <?php if ($edit_product): ?>
+                        <a href="products.php" class="btn ghost">Отмена</a>
+                    <?php endif; ?>
+                </div>
             </div>
         </form>
     </section>
@@ -395,7 +281,7 @@ try {
 </main>
 
 <script>
-    // Предпросмотр изображения перед загрузкой
+    // Предпросмотр изображения перед загрузкой //
     document.getElementById('image').addEventListener('change', function(event) {
         const file = event.target.files[0];
         const preview = document.getElementById('imagePreview');

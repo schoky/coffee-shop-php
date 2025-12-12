@@ -45,78 +45,7 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Реалист — Админ панель</title>
     <link rel="stylesheet" href="../css/style.css">
-    <style>
-        .admin-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .admin-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 40px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #e6e6e6;
-        }
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 24px;
-            margin-bottom: 40px;
-        }
-        .stat-card {
-            background: var(--white);
-            padding: 32px 24px;
-            border-radius: var(--radius);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-        .stat-card:hover {
-            transform: translateY(-5px);
-        }
-        .stat-number {
-            font-size: 42px;
-            font-weight: 700;
-            color: var(--accent);
-            margin-bottom: 8px;
-        }
-        .stat-label {
-            color: var(--muted);
-            font-size: 16px;
-        }
-        .admin-nav {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 24px;
-        }
-        .nav-card {
-            background: var(--white);
-            padding: 32px;
-            border-radius: var(--radius);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-            text-align: center;
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-        .nav-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-3px);
-        }
-        .nav-card h3 {
-            color: var(--accent);
-            margin-bottom: 12px;
-        }
-        .logout-btn {
-            background: #dc3545;
-            color: white;
-        }
-        .logout-btn:hover {
-            background: #c82333;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/admin.css">
 </head>
 <body>
 <main class="container admin-container">
