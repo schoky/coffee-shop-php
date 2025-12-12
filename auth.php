@@ -36,6 +36,10 @@ require "block/header.php";
                 <button type="submit" class="btn">Авторизироваться</button>
             </div>
         </form>
+
+        <div style="margin-top: 20px; text-align: center;">
+            <a href="forgot-password.php">Забыли пароль?</a>
+        </div>
     </div>
 </main>
 <?php require "block/footer.php" ?>

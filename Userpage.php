@@ -121,6 +121,7 @@ if (isset($_SESSION['profile_success'])) {
 
     <section class="data">
         <button class="btn" id="editProfile">Изменить профиль</button>
+        <a href="change-password.php" class="btn ghost">Сменить пароль</a>
         <a href="order-history.php" class="btn ghost">История заказов</a>
     </section>
 

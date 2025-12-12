@@ -26,10 +26,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_admin'])) {
             if ($query->rowCount() > 0) {
                 $error_message = 'Администратор с таким логином уже существует';
             } else {
+                // Хэширование пароля с помощью password_hash
+                $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
                 // Добавляем нового администратора
-                $sql = 'INSERT INTO admin_users (username, password, email) VALUES (?, MD5(?), ?)';
+                $sql = 'INSERT INTO admin_users (username, password, email) VALUES (?, ?, ?)';
                 $query = $pdo->prepare($sql);
-                $query->execute([$username, $password, $email]);
+                $query->execute([$username, $hashed_password, $email]);
                 $success_message = 'Новый администратор успешно добавлен';
             }
         } catch (PDOException $e) {
@@ -38,6 +41,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_admin'])) {
         }
     } else {
         $error_message = 'Заполните все поля';
+    }
+}
+
+// Сброс пароля администратора
+if (isset($_GET['reset_password'])) {
+    $reset_id = intval($_GET['reset_password']);
+
+    try {
+        // Генерация временного пароля
+        $temp_password = bin2hex(random_bytes(8));
+        $hashed_password = password_hash($temp_password, PASSWORD_DEFAULT);
+
+        // Обновление пароля
+        $sql = 'UPDATE admin_users SET password = ?, reset_token = NULL, reset_token_expires = NULL WHERE id = ?';
+        $query = $pdo->prepare($sql);
+        $query->execute([$hashed_password, $reset_id]);
+
+        $success_message = "Пароль администратора сброшен. Новый пароль: <strong>$temp_password</strong>";
+
+    } catch (PDOException $e) {
+        error_log("Reset admin password error: " . $e->getMessage());
+        $error_message = 'Ошибка при сбросе пароля';
     }
 }
 
@@ -85,9 +110,9 @@ try {
 <main class="container admin-container">
     <div class="admin-header">
         <h1>Управление администраторами</h1>
-        <div>
+        <div class="header-actions">
             <a href="index.php" class="btn ghost">Назад в панель</a>
-            <a href="../index.php" class="btn" style="margin-left: 15px;">На сайт</a>
+            <a href="../index.php" class="btn">На сайт</a>
         </div>
     </div>
 
@@ -101,7 +126,7 @@ try {
 
     <section class="form-section">
         <h2>Добавить нового администратора</h2>
-        <form method="post">
+        <form method="post" class="admin-form">
             <div class="form-grid">
                 <div class="form-group">
                     <label for="username">Имя пользователя *</label>
@@ -120,7 +145,7 @@ try {
             </div>
 
             <div class="form-actions">
-                <button type="submit" name="add_admin" class="btn">Добавить администратора</button>
+                <button type="submit" name="add_admin" class="btn primary">Добавить администратора</button>
             </div>
         </form>
     </section>
@@ -128,46 +153,72 @@ try {
     <section class="list-section">
         <h2>Список администраторов</h2>
         <?php if (empty($admins)): ?>
-            <p>Администраторов пока нет.</p>
+            <div class="empty-message">
+                <p>Администраторов пока нет.</p>
+            </div>
         <?php else: ?>
-            <table class="admins-table">
-                <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Имя пользователя</th>
-                    <th>Email</th>
-                    <th>Дата создания</th>
-                    <th>Действия</th>
-                </tr>
-                </thead>
-                <tbody>
-                <?php foreach ($admins as $admin): ?>
-                    <tr class="<?php echo $admin->id == $_SESSION['admin_id'] ? 'current-user' : ''; ?>">
-                        <td><?php echo $admin->id; ?></td>
-                        <td>
-                            <?php echo htmlspecialchars($admin->username); ?>
-                            <?php if ($admin->id == $_SESSION['admin_id']): ?>
-                                <span style="color: #856404; margin-left: 8px;">(Вы)</span>
-                            <?php endif; ?>
-                        </td>
-                        <td><?php echo htmlspecialchars($admin->email); ?></td>
-                        <td><?php echo date('d.m.Y H:i', strtotime($admin->created_at)); ?></td>
-                        <td>
-                            <div class="action-buttons">
-                                <?php if ($admin->id != $_SESSION['admin_id']): ?>
-                                    <a href="?delete=<?php echo $admin->id; ?>" class="btn btn-small"
-                                       onclick="return confirm('Вы уверены, что хотите удалить этого администратора?')"
-                                       style="background: #dc3545;">Удалить</a>
-                                <?php else: ?>
-                                    <span style="color: var(--muted); font-size: 14px;">Текущий пользователь</span>
-                                <?php endif; ?>
-                            </div>
-                        </td>
+            <div class="table-container">
+                <table class="admins-table">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Имя пользователя</th>
+                        <th>Email</th>
+                        <th>Дата создания</th>
+                        <th>Действия</th>
                     </tr>
-                <?php endforeach; ?>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($admins as $admin): ?>
+                        <tr class="<?php echo $admin->id == $_SESSION['admin_id'] ? 'current-user' : ''; ?>">
+                            <td class="admin-id"><?php echo $admin->id; ?></td>
+                            <td class="admin-username">
+                                <?php echo htmlspecialchars($admin->username); ?>
+                                <?php if ($admin->id == $_SESSION['admin_id']): ?>
+                                    <span class="current-user-badge">(Вы)</span>
+                                <?php endif; ?>
+                            </td>
+                            <td class="admin-email"><?php echo htmlspecialchars($admin->email); ?></td>
+                            <td class="admin-date"><?php echo date('d.m.Y H:i', strtotime($admin->created_at)); ?></td>
+                            <td class="admin-actions">
+                                <div class="action-buttons">
+                                    <?php if ($admin->id != $_SESSION['admin_id']): ?>
+                                        <a href="?delete=<?php echo $admin->id; ?>"
+                                           class="btn-small btn-delete"
+                                           onclick="return confirm('Вы уверены, что хотите удалить этого администратора?')">
+                                            Удалить
+                                        </a>
+                                        <a href="?reset_password=<?php echo $admin->id; ?>"
+                                           class="btn-small btn-reset"
+                                           onclick="return confirm('Сбросить пароль этого администратора? Будет сгенерирован новый временный пароль.')">
+                                            Сбросить пароль
+                                        </a>
+                                    <?php else: ?>
+                                        <span class="current-user-label">Текущий пользователь</span>
+                                        <a href="forgot-password-admin.php"
+                                           class="btn-small btn-change"
+                                           title="Сменить свой пароль">
+                                            Сменить пароль
+                                        </a>
+                                    <?php endif; ?>
+                                </div>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
         <?php endif; ?>
+
+        <div class="admin-notes">
+            <h4>💡 Примечания:</h4>
+            <ul>
+                <li><strong>Сброс пароля</strong> генерирует новый временный пароль для администратора</li>
+                <li><strong>Удаление</strong> полностью удаляет администратора из системы</li>
+                <li>Нельзя удалить свою собственную учетную запись</li>
+                <li>Для смены собственного пароля используйте <a href="forgot-password-admin.php">форму восстановления</a></li>
+            </ul>
+        </div>
     </section>
 </main>
 </body>

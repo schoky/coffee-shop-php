@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: MySQL-8.2:3306
--- Время создания: Дек 06 2025 г., 17:22
+-- Время создания: Дек 12 2025 г., 19:23
 -- Версия сервера: 8.2.0
 -- Версия PHP: 8.3.6
 
@@ -32,16 +32,17 @@ CREATE TABLE `admin_users` (
   `username` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `reset_token` varchar(100) DEFAULT NULL,
+  `reset_token_expires` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Дамп данных таблицы `admin_users`
 --
 
-INSERT INTO `admin_users` (`id`, `username`, `password`, `email`, `created_at`) VALUES
-(2, 'admin', '4c5edf29b1ab1149e64f82e7ed8f947f', 'admin@realist.ru', '2025-11-17 15:03:57'),
-(3, 'admin2', '4c5edf29b1ab1149e64f82e7ed8f947f', 'admin2@realist.ru', '2025-11-17 18:48:17');
+INSERT INTO `admin_users` (`id`, `username`, `password`, `email`, `created_at`, `reset_token`, `reset_token_expires`) VALUES
+(2, 'admin', '$2y$10$hz6lsxXtEgZIPJYVd97Td.GQHsxSP.UP4ktwfaBrrofeZW97MTbWK', 'admin@realist.ru', '2025-11-17 12:03:57', '6fcc6e3720396e92148aefe8ed33c93498da8e39941233a85eebdd627cec490d', '2025-12-12 19:59:52');
 
 -- --------------------------------------------------------
 
@@ -111,9 +112,9 @@ CREATE TABLE `order_emails` (
   `id` int NOT NULL,
   `order_id` int NOT NULL,
   `user_id` int NOT NULL,
-  `subject` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `content` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `recipient_email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `subject` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `recipient_email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `sent_at` datetime DEFAULT NULL,
   `created_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -197,10 +198,12 @@ CREATE TABLE `users` (
   `id` int NOT NULL,
   `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `email` varchar(100) NOT NULL,
-  `password` varchar(255) NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `bonus_balance` decimal(10,2) NOT NULL DEFAULT '0.00',
   `is_bonus_program` tinyint(1) NOT NULL DEFAULT '0',
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `reset_token` varchar(100) DEFAULT NULL,
+  `reset_token_expires` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
@@ -212,7 +215,8 @@ CREATE TABLE `users` (
 --
 ALTER TABLE `admin_users`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `username` (`username`);
+  ADD UNIQUE KEY `username` (`username`),
+  ADD KEY `reset_token` (`reset_token`);
 
 --
 -- Индексы таблицы `cart`
@@ -270,7 +274,8 @@ ALTER TABLE `photo`
 -- Индексы таблицы `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `reset_token` (`reset_token`);
 
 --
 -- AUTO_INCREMENT для сохранённых таблиц
@@ -280,13 +285,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `admin_users`
 --
 ALTER TABLE `admin_users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT для таблицы `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT для таблицы `contact_requests`
@@ -298,37 +303,37 @@ ALTER TABLE `contact_requests`
 -- AUTO_INCREMENT для таблицы `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT для таблицы `order_emails`
 --
 ALTER TABLE `order_emails`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT для таблицы `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT для таблицы `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT для таблицы `photo`
 --
 ALTER TABLE `photo`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц

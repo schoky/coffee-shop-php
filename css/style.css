@@ -25,7 +25,7 @@ body {
     padding: 28px;
 }
 
-/* ===== СТИЛИ ШАПКИ ===== */
+/* СТИЛИ ШАПКИ  */
 .site-header {
     background: var(--white);
     box-shadow: 0 1px 6px rgba(0, 0, 0, .06);
@@ -259,7 +259,7 @@ body {
     border-radius: 2px;
 }
 
-/* ===== БУРГЕР-МЕНЮ ===== */
+/* БУРГЕР-МЕНЮ */
 .burger-menu {
     position: fixed;
     top: 0;
@@ -549,7 +549,7 @@ body {
     }
 }
 
-/* ===== СТИЛИ ОСНОВНОГО КОНТЕНТА ===== */
+/* СТИЛИ ОСНОВНОГО КОНТЕНТА  */
 /* Кнопки */
 .btn {
     background: var(--accent);
@@ -1869,4 +1869,196 @@ form textarea {
     justify-content: center;
     margin-top: 24px;
     flex-wrap: wrap;
+}
+
+/* СТИЛИ ДЛЯ СТРАНИЦЫ ВОССТАНОВЛЕНИЯ ПАРОЛЯ */
+
+/* Контейнер для страницы восстановления пароля */
+.reset-container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+/* Карточка формы восстановления пароля */
+.reset-form-card {
+    background: var(--white);
+    padding: 40px;
+    border-radius: var(--radius);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+.reset-form-card h1 {
+    text-align: center;
+    color: var(--accent);
+    margin-bottom: 25px;
+    font-size: 28px;
+}
+
+/* Группы формы для восстановления пароля */
+.reset-form-card .form-group {
+    margin-bottom: 25px;
+}
+
+.reset-form-card .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--text-dark);
+    font-size: 16px;
+}
+
+.reset-form-card .form-group input {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #e6e6e6;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background: #f9f9f9;
+}
+
+.reset-form-card .form-group input:focus {
+    outline: none;
+    border-color: var(--accent);
+    background: white;
+    box-shadow: 0 0 0 3px rgba(var(--accent-rgb, 0, 123, 255), 0.1);
+}
+
+.reset-form-card .form-group p {
+    color: var(--muted);
+    margin-bottom: 10px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+/* Сообщения об успехе и ошибке для восстановления пароля */
+.reset-form-card .success-message {
+    background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+    color: #155724;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    border: 1px solid #b1dfbb;
+    box-shadow: 0 2px 10px rgba(52, 199, 89, 0.1);
+}
+
+.reset-form-card .error-message {
+    background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+    color: #721c24;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    border: 1px solid #f1b0b7;
+    box-shadow: 0 2px 10px rgba(220, 53, 69, 0.1);
+}
+
+/* Действия формы для восстановления пароля */
+.reset-form-card .form-actions {
+    margin-top: 30px;
+}
+
+.reset-form-card .btn.full-width {
+    width: 100%;
+    padding: 16px;
+    font-size: 17px;
+    font-weight: 600;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.reset-form-card .btn.full-width:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(var(--accent-rgb, 0, 123, 255), 0.25);
+}
+
+/* Ссылки для восстановления пароля */
+.reset-form-card .reset-links {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #f0f0f0;
+    text-align: center;
+}
+
+.reset-form-card .reset-links .text-link {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.reset-form-card .reset-links .text-link:hover {
+    color: var(--accent-dark);
+    text-decoration: underline;
+}
+
+/* Кнопки действий в сообщениях */
+.reset-form-card .reset-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.reset-form-card .reset-actions .btn {
+    padding: 12px 30px;
+    font-size: 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    text-align: center;
+}
+
+.reset-form-card .reset-actions .btn.ghost {
+    background: transparent;
+    color: var(--accent);
+    border: 2px solid var(--accent);
+}
+
+.reset-form-card .reset-actions .btn.ghost:hover {
+    background: var(--accent);
+    color: white;
+}
+
+/* Стили для placeholder */
+.reset-form-card .form-group input::placeholder {
+    color: #999;
+    opacity: 0.8;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 576px) {
+    .reset-container {
+        margin: 30px auto;
+        padding: 0 15px;
+    }
+
+    .reset-form-card {
+        padding: 25px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .reset-form-card h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .reset-form-card .form-group input {
+        padding: 12px;
+        font-size: 15px;
+    }
+
+    .reset-form-card .btn.full-width {
+        padding: 14px;
+        font-size: 16px;
+    }
+
+    .reset-form-card .success-message,
+    .reset-form-card .error-message {
+        padding: 15px;
+        font-size: 14px;
+    }
 }

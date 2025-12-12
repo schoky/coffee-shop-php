@@ -15,17 +15,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         try {
             // Ищем администратора по username ИЛИ email
-            $sql = 'SELECT * FROM admin_users WHERE (username = ? OR email = ?) AND password = MD5(?)';
+            $sql = 'SELECT * FROM admin_users WHERE username = ? OR email = ?';
             $query = $pdo->prepare($sql);
-            $query->execute([$login, $login, $password]);
+            $query->execute([$login, $login]);
             $admin = $query->fetch(PDO::FETCH_OBJ);
 
             if ($admin) {
-                $_SESSION['admin'] = $admin->username;
-                $_SESSION['admin_id'] = $admin->id;
-                $_SESSION['admin_email'] = $admin->email;
-                header('Location: index.php');
-                exit;
+                // Проверка пароля с помощью password_verify
+                if (password_verify($password, $admin->password)) {
+                    $_SESSION['admin'] = $admin->username;
+                    $_SESSION['admin_id'] = $admin->id;
+                    $_SESSION['admin_email'] = $admin->email;
+                    header('Location: index.php');
+                    exit;
+                } else {
+                    // Для обратной совместимости со старыми MD5 паролями
+                    $old_hashed_password = md5($password);
+                    if ($old_hashed_password === $admin->password) {
+                        // Обновляем пароль на новый формат
+                        $new_hashed_password = password_hash($password, PASSWORD_DEFAULT);
+                        $sql_update = 'UPDATE admin_users SET password = ? WHERE id = ?';
+                        $query_update = $pdo->prepare($sql_update);
+                        $query_update->execute([$new_hashed_password, $admin->id]);
+
+                        $_SESSION['admin'] = $admin->username;
+                        $_SESSION['admin_id'] = $admin->id;
+                        $_SESSION['admin_email'] = $admin->email;
+                        header('Location: index.php');
+                        exit;
+                    }
+
+                    $error = 'Неверное имя пользователя, email или пароль';
+                }
             } else {
                 $error = 'Неверное имя пользователя, email или пароль';
             }
@@ -75,6 +96,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </form>
 
         <div class="back-to-site">
+            <div style="margin-bottom: 10px;">
+                <a href="forgot-password-admin.php" style="color: var(--accent); font-size: 14px;">Забыли пароль?</a>
+            </div>
             <a href="../index.php" class="btn ghost" style="margin-top: 15px;">← Вернуться на сайт</a>
         </div>
     </div>
